@@ -11,8 +11,10 @@ import './App.css'
 function App() {
   const [tokens, setTokens] = useState(0)
   const [totalpulls, setTotalpulls] = useState(0)
+
   const [history, setHistory] = useState([])
   const [prevPull, setPrevPull] = useState('')
+  
   const [reward, setReward] = useState('')
   const [shown, setShown] = useState(false)
   const [text, setText] = useState("Show")
