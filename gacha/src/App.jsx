@@ -1,121 +1,92 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import Chance from 'chance'
+import History from './components/History'
+
+// const chance = new Chance();
+// const result = chance.weighted(['Sword', 'Shield'], [80, 20]);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tokens, setTokens] = useState(0)
+  const [totalpulls, setTotalpulls] = useState(0)
+  const [history, setHistory] = useState([])
+  const [prevPull, setPrevPull] = useState('')
+  const [reward, setReward] = useState('')
+  const [shown, setShown] = useState(false)
+  const [text, setText] = useState("Show")
+  const [id, setId] = useState(1)
+
+  const C = {
+    items: [
+      "Noelle (OG)",
+      "Noelle (Summer Breeze)",
+      "Noelle (Stylish)"
+    ],
+    chances: [1, 2, 3]
+  }
+
+  const R = {
+    items: [
+      "Naruto", 
+      "Sasuke"
+    ],
+    chances: [3, 1]
+  }
+
+  const E = {
+    items: [
+      "Noelle (Succubus)",
+      "Noelle (Angel) "
+    ],
+    chances: [1, 1]
+  }
+
+  const L = {
+    items: [
+      "????????????", 
+      "Noelle (Halls of NUS Shirt)", 
+      "CAPYBARA NOELLE"
+    ],
+    chances: [10, 5, 2]
+  }
+
+  const rarities = [C, R, E, L]
+  const rarity_chances = [60, 25, 10, 5] // represents common, rare, epic, legendary item chances, respectively
+
+  const handlePull = () => {
+    const selected_rarity = new Chance().weighted(rarities, rarity_chances)
+    const selected_item = new Chance().weighted(selected_rarity.items, selected_rarity.chances)
+
+    const newObj = {
+      item: selected_item,
+      id: id
+    }
+
+    setReward(selected_item)
+    setHistory(history.concat(newObj))
+    setTotalpulls(totalpulls + 1)
+    setId(id + 1)
+  }
+
+  const handleShow = () => {
+    setShown(!shown)
+
+    let temp = (shown) ? "Show" : "Hide"
+    setText(temp)
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    <div>
+      <h1>Gacha Simulator</h1>
+      <h4>Image here</h4>
+      <button>i (for rates)</button>
+      <button onClick={handlePull}>x1 Draw</button>
+      <p>Reward Obtained: {reward}</p>
+      <p>Total Pulls: {totalpulls}</p>
+      <h4>History</h4>
+      <button onClick={handleShow}>{text}</button>
+      <History history={history} shown={shown}/>
+    </div>
   )
 }
 
