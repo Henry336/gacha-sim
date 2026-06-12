@@ -1,0 +1,98 @@
+{
+    "user": {
+        "id": "usr_a033192",
+        "username": "Developer",
+        "created_at": "2026-06-12T13:56:35Z"
+    },
+    "economy": {
+        "tokens": 1600,
+        "premium_tokens": 10,
+        "lifetime_tokens_earned": 9000,
+        "lifetime_ptokens_earned": 300
+    },
+    "pet": {
+        "id": "pet_a033h1j",
+        "name": "SOC Cat",
+        "level": 10,
+        "total_exp": 5000,
+        "curr_exp": 240,
+        "exp_to_next_level": 260,
+        "base_stats": {
+            "focus": 30,
+            "determination": 10
+        },
+        "equipped_items": [
+            "itm_004"
+        ]
+    },
+    "inventory": {
+        "owned_items": [
+            {
+                "id": "itm_000",
+                "name": "Witch Hat",
+                "rarity": "common",
+                "bonuses": {
+                    "focus": 0,
+                    "determination": 0,
+                    "exp_multiplier": 1.0
+                }
+            },
+            {
+                "id": "itm_004",
+                "name": "LINUS Costume",
+                "rarity": "exclusive",
+                "bonuses": {
+                    "focus": 15,
+                    "determination": 20,
+                    "exp_multiplier": 1.2
+                }
+            }
+        ]
+    },
+    "gacha": {
+        "banners": [
+            {
+                "id": "ban_beginner",
+                "name": "Novice Wishes",
+                "type": "beginner",
+                "is_active": true,
+                "cost_per_pull": 160,
+                "currency_type": "tokens",
+                "featured_items": ["itm_000"]
+            },
+            {
+                "id": "ban_standard",
+                "name": "Standard Wishes",
+                "type": "standard",
+                "is_active": true,
+                "cost_per_pull": 160,
+                "currency_type": "tokens",
+                "featured_items": ["itm_004"]
+            }
+        ],
+        "user_state": {
+            "beginner_pulls_remaining": 20,
+            "standard_pity": 42,
+            "limited_pity": 0,
+            "total_pulls": 42,
+            "pull_history": [
+                {
+                    "id": "hist_1",
+                    "banner_id": "ban_standard",
+                    "item_id": "itm_000",
+                    "timestamp": "2026-06-12T14:05:00Z"
+                }
+            ]
+        }
+    },
+    "quests": {
+        "last_canvas_sync": "2026-06-12T00:00:00Z",
+        "active": [],
+        "completed_ids": [39941, 38213]
+    },
+    "study_methods": {
+        "pomodoro": null,
+        "other_method": null,
+        "other_other_method": null
+    }
+}
