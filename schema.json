@@ -1,4 +1,28 @@
 {
+    "system_data": {
+        "items": [
+            {
+                "id": "itm_000",
+                "name": "Witch Hat",
+                "rarity": "common",
+                "bonuses": {
+                    "focus": 0,
+                    "determination": 0,
+                    "exp_multiplier": 1.0
+                }
+            },
+            {
+                "id": "itm_004",
+                "name": "LINUS Costume",
+                "rarity": "exclusive",
+                "bonuses": {
+                    "focus": 15,
+                    "determination": 20,
+                    "exp_multiplier": 1.2
+                }
+            }
+        ]
+    },
     "user": {
         "id": "usr_a033192",
         "username": "Developer",
@@ -27,26 +51,8 @@
     },
     "inventory": {
         "owned_items": [
-            {
-                "id": "itm_000",
-                "name": "Witch Hat",
-                "rarity": "common",
-                "bonuses": {
-                    "focus": 0,
-                    "determination": 0,
-                    "exp_multiplier": 1.0
-                }
-            },
-            {
-                "id": "itm_004",
-                "name": "LINUS Costume",
-                "rarity": "exclusive",
-                "bonuses": {
-                    "focus": 15,
-                    "determination": 20,
-                    "exp_multiplier": 1.2
-                }
-            }
+            "itm_000",
+            "itm_004"
         ]
     },
     "gacha": {
@@ -59,15 +65,6 @@
                 "cost_per_pull": 160,
                 "currency_type": "tokens",
                 "featured_items": ["itm_000"]
-            },
-            {
-                "id": "ban_standard",
-                "name": "Standard Wishes",
-                "type": "standard",
-                "is_active": true,
-                "cost_per_pull": 160,
-                "currency_type": "tokens",
-                "featured_items": ["itm_004"]
             }
         ],
         "user_state": {
