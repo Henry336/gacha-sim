@@ -206,6 +206,10 @@ app.get('/api/assignments', (req, res, next) => {
 app.get('/api/inventory', (req, res, next) => {
 
 })
+
+app.get('/', (req, res) => {
+    res.send('<h1>Welcome to the Canvas Impact Backend Server</h1>')
+})
 /////////////////////////////////////////////////////////////////////////////////////////
 
 /**
