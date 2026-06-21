@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 const baseUrl = 'https://canvas.nus.edu.sg/api/v1'
 
 /**
