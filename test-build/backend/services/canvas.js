@@ -64,4 +64,4 @@ const deleteEntry = id => {
 }
         */
 
-export default { getUser, getCourses, getAssignmentsOf }
+module.exports = { getUser, getCourses, getAssignmentsOf }
