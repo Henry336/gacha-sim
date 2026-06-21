@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'https://canvas/nus.edu.sg/api/v1'
+const baseUrl = 'https://canvas.nus.edu.sg/api/v1'
 
 /**
  * @description Used to populate the user profile and identify the authenticated user
