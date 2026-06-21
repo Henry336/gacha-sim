@@ -53,14 +53,19 @@ app.post('/api/users/register', async (req, res, next) => {
     const canvasProfile = await canvasService.getUser(rawToken)
     const activeCourses = await canvasService.getCourses(rawToken)
     
-    // Create the new User in MongoDB
-    const newUser = new User({
-      canvasUserId: canvasProfile.id,
-      username: req.body.username,
-      encryptedCanvasToken: securedToken
-      //  initialize pet and inventory
-    })
-    const savedUser = await newUser.save()
+    // Create the new User in MongoDB (OR) update existing user if the id already exists
+    const savedUser = await User.findOneAndUpdate(
+      { canvasUserId: canvasProfile.id }, // Search for this user
+      { 
+        username: req.body.username,
+        encryptedCanvasToken: securedToken // Always update to their latest token
+      },
+      { 
+        new: true, // Return the updated document, not the old one
+        upsert: true, // If not found, create a new one
+        setDefaultsOnInsert: true // Ensures the default Pet and Inventory are generated
+      } 
+    )
 
     // Loop through their active courses to grab ALL assignments
     for (const course of activeCourses) {

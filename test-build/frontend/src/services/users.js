@@ -11,7 +11,7 @@ const register = credentials => {
 // for below, when using in frontend in onClick={}, might have to do () => userService.syncUser(userId)
 const sync = userId => { // this will be activated whenever the refresh button is clicked for quests
     return axios
-        .post(baseUrl + `/sync`, {
+        .post(baseUrl + `/sync`, {}, {
             headers: {
                 'user-id': userId
             }

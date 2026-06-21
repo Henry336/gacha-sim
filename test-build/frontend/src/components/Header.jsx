@@ -16,7 +16,8 @@ const Header = ({ user }) => {
       <div>
         <h2 style={{ margin: 0 }}>{user.username}</h2>
         <div style={{ fontSize: '12px', color: '#aaa', marginTop: '5px' }}>
-          Current EXP: {user.currentExp}
+          {/* Safely targets the nested pet logic with a fallback */}
+          Current EXP: {user.pet?.exp || 0} / {user.pet?.requiredExp || 100}
         </div>
         <div style={expBarStyle}>
           {/* Visual representation of EXP - hardcoded width for now */}

@@ -16,6 +16,6 @@ const assignmentSchema = new mongoose.Schema({
   // Gamification State
   isCompletedLocally: { type: Boolean, default: false },
   pointsPossible: { type: Number, default: 10 }
-}, { __v: false });
+}, { __v: false })
 
-module.exports = mongoose.model('Assignment', assignmentSchema);
+module.exports = mongoose.model('Assignment', assignmentSchema)

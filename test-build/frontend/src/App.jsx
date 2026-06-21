@@ -72,7 +72,7 @@ const App = () => {
       
       {/* Conditional Rendering Block to simulate a Router */}
       {currentView === 'dashboard' && (
-        <MiddleComponent 
+        <MiddleComp
           user={user} 
           quests={assignments} 
           onManualSync={handleManualSync} 
