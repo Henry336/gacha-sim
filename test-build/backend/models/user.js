@@ -18,7 +18,8 @@ const inventoryItemSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     canvasUserId: { type: Number, required: true, unique: true },
     username: { type: String, required: true },
-    standardTokens: { type: Number, default: 0 },
+    encryptedCanvasToken: { type: String, required: true },
+    gachaTokens: { type: Number, default: 0 },
     premiumTokens: { type: Number, default: 0 },
     pet: { type: petSchema, default: () => ({}) }, // this initializes the default pet
     inventory: [inventoryItemSchema] // array of inventory item objects defined above

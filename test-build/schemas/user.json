@@ -1,0 +1,30 @@
+{
+  "_id": "64b1c2d3e4f5a6b7c8d9e0f1",
+  "canvasUserId": 1234567,
+  "username": "Developer",
+  "encryptedCanvasToken": "a1b2c3d4e5f6:7890abcdef...", 
+  "currentExp": 240,
+  "gachaTokens": 1600,
+  "premiumTokens": 10,
+  
+  "pet": {
+    "name": "SOC Cat",
+    "level": 10,
+    "equipped_items": ["itm_004"]
+  },
+  
+  "inventory": [
+    { "itemId": "itm_000", "quantity": 1 },
+    { "itemId": "itm_004", "quantity": 1 }
+  ],
+  
+  "gachaState": {
+    "beginner_pulls_remaining": 20,
+    "standard_pity": 42,
+    "limited_pity": 0
+  },
+  
+  "study_methods": {
+    "pomodoro": null
+  }
+}

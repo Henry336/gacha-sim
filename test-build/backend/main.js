@@ -97,7 +97,7 @@ app.post('/api/users/register', async (req, res) => {
 /**
  * @description sync the user's state whenever 'refresh' button is pressed in the quests dashboard by user
  */
-app.post('/api/sync', async (req, res, next) => {
+app.post('/api/users/sync', async (req, res, next) => {
   try {
     // Blindly accept the user ID from the frontend headers (can make this more secure by learning part 4 FSO)
     const currentUserId = req.headers['user-id']; 
@@ -137,7 +137,7 @@ app.post('/api/sync', async (req, res, next) => {
             totalTokensGained += 1; // just award 1 token for now
 
             await User.findByIdAndUpdate(user._id, {
-              $inc: { currentExp: expReward, gachaTokens: 1 } // increment these properties by this amount
+              $inc: { 'pet.exp': expReward, gachaTokens: 1 } // increment these properties by this amount
             });
 
             existingQuest.isCompletedLocally = true;

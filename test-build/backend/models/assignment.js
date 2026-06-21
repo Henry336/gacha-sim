@@ -15,7 +15,7 @@ const assignmentSchema = new mongoose.Schema({
 
   // Gamification State
   isCompletedLocally: { type: Boolean, default: false },
-  expReward: { type: Number, default: 50 }
-});
+  pointsPossible: { type: Number, default: 10 }
+}, { __v: false });
 
 module.exports = mongoose.model('Assignment', assignmentSchema);

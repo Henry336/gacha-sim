@@ -1,0 +1,24 @@
+{
+  "system_items": [
+    {
+      "id": "itm_000",
+      "name": "Witch Hat",
+      "rarity": "common",
+      "bonuses": { "focus": 0, "determination": 0, "exp_multiplier": 1.0 }
+    },
+    {
+      "id": "itm_004",
+      "name": "LINUS Costume",
+      "rarity": "exclusive",
+      "bonuses": { "focus": 15, "determination": 20, "exp_multiplier": 1.2 }
+    }
+  ],
+  "active_banners": [
+    {
+      "id": "ban_beginner",
+      "name": "Novice Wishes",
+      "cost_per_pull": 160,
+      "featured_items": ["itm_000"]
+    }
+  ]
+}
