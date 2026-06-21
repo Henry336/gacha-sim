@@ -24,9 +24,11 @@ const Assignment = require('./models/assignment')
 const canvasService = require('./services/canvas')
 
 const app = express()
+const cors = require('cors')
 
 app.use(express.json()) // json parser
-app.use(express.static('dist')) // to use the production build of the frontend
+app.use(cors())
+//app.use(express.static('dist')) // to use the production build of the frontend
 
 morgan.token('body', function getBody (req) {
   return JSON.stringify(req.body)
@@ -42,7 +44,7 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :b
 /**
  * @returns a response containing the user's data in json format
  */
-app.post('/api/users/register', async (req, res) => {
+app.post('/api/users/register', async (req, res, next) => {
   try {
     const rawToken = req.body.token // The Canvas API token sent from the frontend
     const securedToken = encryptToken(rawToken) // encrypt the raw token immediately
