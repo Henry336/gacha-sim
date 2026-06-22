@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const base = import.meta.env.VITE_API_URL || 'http://localhost:3001'
-const baseUrl = base + '/api/users'
+const baseUrl = base + '/api/assignments'
 
 const getActive = async (userId) => {
     if (userId === 'demo-user-id' || !userId) {

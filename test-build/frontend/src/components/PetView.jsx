@@ -35,12 +35,12 @@ const PetView = ({ pet }) => {
           
           <div className="flex justify-between items-center px-4 py-2.5 bg-neutral-950/80 border border-white/5 rounded-xl">
             <span className="text-sm font-medium text-neutral-400">Focus</span>
-            <span className="text-base font-black text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] animate-pulse">{pet.stats.focus}</span>
+            <span className="text-base font-black text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] animate-pulse">{pet?.stats?.focus ?? pet?.focus ?? 0}</span>
           </div>
           
           <div className="flex justify-between items-center px-4 py-2.5 bg-neutral-950/80 border border-white/5 rounded-xl">
             <span className="text-sm font-medium text-neutral-400">Determination</span>
-            <span className="text-base font-black text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] animate-pulse">{pet.stats.determination}</span>
+            <span className="text-base font-black text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)] animate-pulse">{pet?.stats?.determination ?? pet?.determination ?? 0}</span>
           </div>
           
         </div>

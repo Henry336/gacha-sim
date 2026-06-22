@@ -58,8 +58,8 @@ const App = () => {
   }
 
   const handleLogout = () => {
-    // Destroy browser persistence (Replace 'loggedUser' with your actual localStorage key if different)
-    window.localStorage.removeItem('loggedUser');
+    // Destroy browser persistence and keep the same storage key used for login state
+    window.localStorage.removeItem('canvasImpactUserId');
     
     // Clear React state to trigger unmount
     setUser(null); 
