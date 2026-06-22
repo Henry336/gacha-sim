@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = import.meta.env.VITE_API_URL + '/api/users'
+const base = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+const baseUrl = base + '/api/users'
 
 const getActive = userId => {
     return axios
