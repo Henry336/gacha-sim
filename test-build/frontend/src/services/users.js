@@ -16,13 +16,14 @@ const register = async (credentials) => {
         await new Promise(resolve => setTimeout(resolve, 800))
         
         return {
+            _id: 'demo-user-id',
             id: 'demo-user-id', // Critical: Used to intercept future syncs
             username: 'User',
             gachaTokens: 500,
             pet: {
                 name: 'Demo Cat',
                 level: 10,
-                exp: 450,
+                exp: 735,
                 requiredExp: 1000,
                 stats: { focus: 15, determination: 8 }
             },
@@ -55,7 +56,7 @@ const register = async (credentials) => {
  * @returns 
  */
 const sync = async (userId) => {
-    if (userId === 'demo-user-id') {
+    if (userId === 'demo-user-id' || !userId) {
         console.warn("SYSTEM OVERRIDE: Demo Sync Intercepted. Bypassing Canvas API.")
         
         // Simulate network latency (600ms)
@@ -64,7 +65,10 @@ const sync = async (userId) => {
         // Return refreshed mock state (simulate gaining 50 tokens on sync)
         return {
             message: "Demo sync successful",
-            gachaTokens: 550, 
+            yield: {
+                expGained: 150,
+                gachaTokens: 550
+            },
             quests: [
                 { 
                     canvasId: 'mock-1', 

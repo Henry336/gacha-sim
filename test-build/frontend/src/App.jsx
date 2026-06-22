@@ -1,74 +1,82 @@
-import { useState, useEffect } from 'react';
-import Register from './components/Register';
+import { useState, useEffect } from 'react'
+import Register from './components/Register'
 import Header from './components/Header'
-import MiddleComp from './components/MiddleComp';
-import NaviBar from './components/NaviBar';
-import userService from './services/users';
-import assignmentService from './services/assignments';
+import MiddleComp from './components/MiddleComp'
+import NaviBar from './components/NaviBar'
+import userService from './services/users'
+import assignmentService from './services/assignments'
 
 import './App.css'; // Global resets (margin: 0, box-sizing: border-box)
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  const [assignments, setAssignments] = useState([]);
-  const [currentView, setCurrentView] = useState('dashboard'); // conditional routing state
+  const [user, setUser] = useState(null)
+  const [assignments, setAssignments] = useState([])
+  const [currentView, setCurrentView] = useState('dashboard') // conditional routing state
 
   // Check if user ID exists in local storage on initial boot
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('canvasImpactUserId');
+    const loggedUserJSON = window.localStorage.getItem('canvasImpactUserId')
     if (loggedUserJSON) {
-      const parsedUser = JSON.parse(loggedUserJSON);
+      const parsedUser = JSON.parse(loggedUserJSON)
       setUser(parsedUser);
-      fetchAssignments(parsedUser._id);
+      fetchAssignments(parsedUser._id)
     }
-  }, []);
+  }, [])
 
   const fetchAssignments = async (userId) => {
     try {
-      const activeQuests = await assignmentService.getActive(userId);
-      setAssignments(activeQuests);
+      const activeQuests = await assignmentService.getActive(userId)
+      setAssignments(activeQuests)
     } catch (error) {
-      console.error('Error fetching assignments:', error);
+      console.error('Error fetching assignments:', error)
     }
-  };
+  }
 
   const handleLogin = (newUserPayload) => {
     // Save to browser memory to bypass login next time
-    window.localStorage.setItem('canvasImpactUserId', JSON.stringify(newUserPayload));
-    setUser(newUserPayload);
-    fetchAssignments(newUserPayload._id);
-  };
+    window.localStorage.setItem('canvasImpactUserId', JSON.stringify(newUserPayload))
+    setUser(newUserPayload)
+    fetchAssignments(newUserPayload._id)
+  }
 
   const handleManualSync = async () => {
-    if (!user) return;
+    if (!user) return
     try {
-      const syncData = await userService.sync(user._id);
-      console.log('Sync Results:', syncData.yield);
+      const syncData = await userService.sync(user._id)
+      console.log('Sync Results:', syncData.yield)
       
       // If sync yields results, we must re-fetch the user data and assignments
       // For now, we'll just refetch assignments to update the quest list
       fetchAssignments(user._id);
       
       if (syncData.yield.expGained > 0) {
-        alert(`Sync Complete! Gained ${syncData.yield.expGained} EXP`);
+        alert(`Sync Complete! Gained ${syncData.yield.expGained} EXP`)
       }
     } catch (error) {
-      console.error('Sync failed:', error);
+      console.error('Sync failed:', error)
     }
-  };
+  }
+
+  const handleLogout = () => {
+    // Destroy browser persistence (Replace 'loggedUser' with your actual localStorage key if different)
+    window.localStorage.removeItem('loggedUser');
+    
+    // Clear React state to trigger unmount
+    setUser(null); 
+  }
 
   const appContainerStyle = {
     display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#000'
-  };
+  }
 
-  // Auth Gate: If no user is stored in state, force the Register view
+  // If no user is stored in state, force the Register view
   if (!user) {
-    return <Register onLogin={handleLogin} />;
+    return <Register onLogin={handleLogin} />
   }
 
   return (
     <div style={appContainerStyle}>
-      <Header user={user} />
+      <Header user={user} onLogout={handleLogout}/>
       
       {/* Conditional Rendering Block to simulate a Router */}
       {currentView === 'dashboard' && (
@@ -93,7 +101,7 @@ const App = () => {
 
       <NaviBar currentView={currentView} setCurrentView={setCurrentView} />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

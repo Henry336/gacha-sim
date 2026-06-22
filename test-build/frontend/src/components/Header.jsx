@@ -1,4 +1,4 @@
-const Header = ({ user }) => {
+const Header = ({ user, onLogout }) => {
   // Prevent crash with Z-Axis matching placeholder
   if (!user) return <div className="p-6 text-neutral-500 bg-neutral-950/40 backdrop-blur-xl border-b border-white/5">Loading Header...</div>;
 
@@ -39,9 +39,21 @@ const Header = ({ user }) => {
           <span className="opacity-80">🪙</span> Tokens: {user.gachaTokens}
         </h3>
         
-        <button className="px-4 py-2 mt-3 text-sm font-semibold transition-all duration-200 cursor-pointer text-neutral-300 bg-neutral-800/50 rounded-xl hover:bg-neutral-700 hover:text-amber-400 hover:scale-[1.02] hover:shadow-lg hover:shadow-amber-500/10 ring-1 ring-inset ring-white/5 active:scale-[0.98]">
-          ⚙️ Settings
-        </button>
+        {/* Action Button Grid */}
+        <div className="flex gap-2 mt-3">
+          {/* Settings Button */}
+          <button className="px-4 py-2 text-sm font-semibold transition-all duration-200 cursor-pointer text-neutral-300 bg-neutral-800/50 rounded-xl hover:bg-neutral-700 hover:text-amber-400 hover:scale-[1.02] hover:shadow-lg hover:shadow-amber-500/10 ring-1 ring-inset ring-white/5 active:scale-[0.98]">
+            ⚙️ Settings
+          </button>
+          
+          {/* Destructive Logout Button */}
+          <button 
+            onClick={onLogout}
+            className="px-4 py-2 text-sm font-bold text-red-400 transition-all duration-200 cursor-pointer bg-red-950/30 rounded-xl hover:bg-red-900/50 hover:text-red-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-red-500/10 ring-1 ring-inset ring-red-500/20 active:scale-[0.98]"
+          >
+            Logout
+          </button>
+        </div>
       </div>
       
     </div>
