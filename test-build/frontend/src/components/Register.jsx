@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import userService from '../services/users'
+import userService from '../services/users';
 
 const Register = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -21,48 +21,59 @@ const Register = ({ onLogin }) => {
     }
   };
 
-  const overlayStyle = {
-    display: 'flex', justifyContent: 'center', alignItems: 'center',
-    height: '100vh', width: '100vw', backgroundColor: '#1a1a1a', color: '#fff'
-  };
-
-  const formStyle = {
-    display: 'flex', flexDirection: 'column', gap: '15px',
-    backgroundColor: '#2d2d2d', padding: '40px', borderRadius: '8px',
-    width: '350px', boxShadow: '0 4px 10px rgba(0,0,0,0.5)'
-  };
-
-  const inputStyle = {
-    padding: '10px', borderRadius: '4px', border: 'none', outline: 'none'
-  };
-
-  const buttonStyle = {
-    padding: '12px', backgroundColor: '#3b82f6', color: 'white',
-    border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold'
-  };
-
   return (
-    <div style={overlayStyle}>
-      <form style={formStyle} onSubmit={handleRegister}>
-        <div style={{ textAlign: 'center', marginBottom: '10px' }}>
-          <h2 style={{ margin: '0 0 10px 0' }}>Initialize System</h2>
-          <p style={{ fontSize: '14px', color: '#aaa', margin: 0 }}>
+    // 1. The Environment Engine (Full viewport, hidden overflow)
+    <div className="relative flex items-center justify-center w-screen min-h-screen overflow-hidden bg-neutral-950">
+      
+      {/* 2. The Ambient Background Physics (Blurred Plasma Spheres) */}
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+      {/* 3. The Glassmorphic Terminal (Z-Axis Depth) */}
+      <form 
+        onSubmit={handleRegister}
+        className="relative z-10 flex flex-col w-full max-w-md gap-6 p-10 shadow-2xl bg-neutral-900/40 backdrop-blur-2xl rounded-3xl border border-white/10 ring-1 ring-inset ring-white/5"
+      >
+        
+        {/* Header Block */}
+        <div className="text-center mb-2">
+          <h2 className="text-3xl font-black tracking-tight text-transparent bg-gradient-to-br from-neutral-100 to-neutral-400 bg-clip-text">
+            Initialize System
+          </h2>
+          <p className="mt-2 text-sm font-medium text-neutral-400">
             Insert credentials to manipulate your academic reality.
           </p>
         </div>
 
-        <input 
-          style={inputStyle} type="text" placeholder="Desired Username" 
-          value={username} onChange={({ target }) => setUsername(target.value)} required 
-        />
-        <input 
-          style={inputStyle} type="password" placeholder="Canvas API Token" 
-          value={token} onChange={({ target }) => setToken(target.value)} required 
-        />
+        {/* Input Physics (Focus Rings & Inner Shadow) */}
+        <div className="flex flex-col gap-4">
+          <input 
+            type="text" 
+            placeholder="Desired Username" 
+            value={username} 
+            onChange={({ target }) => setUsername(target.value)} 
+            required
+            className="w-full px-5 py-4 text-neutral-100 placeholder-neutral-500 transition-all duration-200 border outline-none bg-neutral-950/50 border-white/5 rounded-xl focus:bg-neutral-900 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 shadow-inner" 
+          />
+          <input 
+            type="password" 
+            placeholder="Canvas API Token" 
+            value={token} 
+            onChange={({ target }) => setToken(target.value)} 
+            required 
+            className="w-full px-5 py-4 text-neutral-100 placeholder-neutral-500 transition-all duration-200 border outline-none bg-neutral-950/50 border-white/5 rounded-xl focus:bg-neutral-900 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 shadow-inner" 
+          />
+        </div>
 
-        <button style={buttonStyle} type="submit" disabled={isRegistering}>
+        {/* Execution Button (Gradient Lighting & Disabled State Logic) */}
+        <button 
+          type="submit" 
+          disabled={isRegistering}
+          className="w-full py-4 mt-2 font-bold tracking-wide text-white transition-all duration-300 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none disabled:grayscale"
+        >
           {isRegistering ? 'Compiling Canvas Data...' : 'Link Canvas Account'}
         </button>
+
       </form>
     </div>
   );

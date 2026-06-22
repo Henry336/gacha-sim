@@ -1,46 +1,48 @@
 const QuestView = ({ quests, onManualSync }) => {
-  const containerStyle = {
-    width: '65%', padding: '20px', overflowY: 'auto', 
-    backgroundColor: '#121212', color: 'white'
-  };
-
-  const cardStyle = {
-    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-    backgroundColor: '#2a2a2a', padding: '15px', borderRadius: '8px', marginBottom: '10px'
-  };
-
-  const syncButtonStyle = {
-    width: '100%', padding: '15px', backgroundColor: '#10b981', color: 'white',
-    border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', marginBottom: '20px'
-  };
-
   return (
-    <div style={containerStyle}>
-      <button style={syncButtonStyle} onClick={onManualSync}>
-        Refresh Quests (Sync with Canvas)
+    <div className="w-[65%] p-6 overflow-y-auto bg-neutral-950 border-l border-neutral-800">
+      
+      <button 
+        onClick={onManualSync}
+        className="w-full p-4 mb-6 font-bold text-white transition-all duration-500 bg-emerald-600 rounded-xl hover:bg-emerald-500 hover:scale-[1.01] active:scale-[0.98] shadow-lg shadow-emerald-900/20 cursor-pointer"
+      >
+        Refresh Quests
       </button>
 
-      <h3 style={{ borderBottom: '1px solid #444', paddingBottom: '10px' }}>Active Assignments</h3>
+      <h3 className="pb-3 mb-4 text-lg font-semibold tracking-wide border-b text-neutral-200 border-neutral-800">
+        Active Quests
+      </h3>
       
       {quests.length === 0 ? (
-        <p>No active quests. You are caught up.</p>
+        <p className="text-neutral-500">No active quests. You are caught up.</p>
       ) : (
         quests.map(quest => (
-          <div key={quest.canvasId} style={cardStyle}>
-            <div>
-              <div style={{ fontWeight: 'bold' }}>{quest.title}</div>
-              <div style={{ fontSize: '12px', color: '#aaa', marginTop: '5px' }}>
-                {quest.courseCode} | Due: {new Date(quest.dueDate).toLocaleDateString()}
+          <div 
+            key={quest.canvasId} 
+            className="flex items-center justify-between p-5 mb-4 transition-all duration-500 border bg-neutral-900/50 border-neutral-800 rounded-2xl hover:border-emerald-500/50 hover:bg-neutral-800 hover:scale-[1.02] backdrop-blur-md"
+          >
+            <div className="flex flex-col">
+              <span className="font-bold tracking-wide text-neutral-100">
+                {quest.title}
+              </span>
+              <div className="flex items-center gap-3 mt-2 text-xs font-medium text-neutral-400">
+                <span className="px-2 py-1 rounded-md bg-neutral-800">
+                  {quest.courseCode}
+                </span>
+                <span>
+                  Due: {new Date(quest.dueDate).toLocaleDateString()}
+                </span>
               </div>
             </div>
-            <div style={{ color: '#fbbf24', fontWeight: 'bold' }}>
-              🏆 {quest.pointsPossible * 10} EXP
+            
+            <div className="text-xl font-black text-amber-500">
+              🏆 {quest.pointsPossible * 10} <span className="text-sm font-bold bg-linear-to-r from-amber-400 to-orange-600 bg-clip-text text-transparent drop-shadow-md">EXP</span>
             </div>
           </div>
         ))
       )}
     </div>
-  );
-};
+  )
+}
 
-export default QuestView;
+export default QuestView
