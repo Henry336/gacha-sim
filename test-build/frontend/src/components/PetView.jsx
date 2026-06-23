@@ -30,7 +30,7 @@ const PetView = ({ pet }) => {
       </div>
 
       <div className="w-full p-4 mb-6 bg-neutral-900/50 border border-white/5 rounded-2xl">
-        <span className="text-xs font-bold tracking-widest text-neutral-500 uppercase">Stats</span>
+        <span className="text-xs font-bold tracking-widest text-neutral-500 uppercase">Attributes</span>
         <div className="flex flex-col gap-2 mt-3">
           
           <div className="flex justify-between items-center px-4 py-2.5 bg-neutral-950/80 border border-white/5 rounded-xl">

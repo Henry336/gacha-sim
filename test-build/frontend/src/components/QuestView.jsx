@@ -19,7 +19,7 @@ const QuestView = ({ quests, onManualSync }) => {
         quests.map(quest => (
           <div 
             key={quest.canvasId} 
-            className="flex items-center justify-between p-5 mb-4 transition-all duration-500 border bg-neutral-900/50 border-neutral-800 rounded-2xl hover:border-emerald-500/50 hover:bg-neutral-800 hover:scale-[1.02] backdrop-blur-md"
+            className="flex items-center justify-between p-5 mb-4 transition-all duration-500 border bg-neutral-900/50 border-neutral-800 rounded-2xl hover:-translate-y-1 hover:border-amber-600 hover:shadow-amber-500/25 hover:scale-[1.02] backdrop-blur-md"
           >
             <div className="flex flex-col">
               <span className="font-bold tracking-wide text-neutral-100">
